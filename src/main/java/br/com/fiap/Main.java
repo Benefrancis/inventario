@@ -63,7 +63,7 @@ public class Main {
     }
 
     private static void findById(EntityManager manager) {
-        Long id = Long.valueOf( JOptionPane.showInputDialog( "ID do Processo" ) );
+        Long id = Long.valueOf( JOptionPane.showInputDialog( "ID: " ) );
         Inventario inventario = manager.find( Inventario.class, id );
         System.out.println( inventario );
     }

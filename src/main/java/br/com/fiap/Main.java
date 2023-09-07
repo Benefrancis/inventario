@@ -15,14 +15,14 @@ public class Main {
     public static void main(String[] args) {
 
         //Aqui a gente mata a cobra e mostra a Cobra morta!!!!!
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory( "oracle" );
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("oracle");
         EntityManager manager = factory.createEntityManager();
 
-         persistDados( manager );
+        // persistDados( manager );
 
         // findInventarioById( manager );
 
-        manager.createQuery( "FROM Bem" ).getResultList().forEach( System.out::println );
+        //   manager.createQuery( "FROM Bem" ).getResultList().forEach( System.out::println );
 
         manager.close();
         factory.close();
@@ -31,37 +31,37 @@ public class Main {
     }
 
     private static void findInventarioById(EntityManager manager) {
-        Long idInventario = Long.valueOf( JOptionPane.showInputDialog( "ID do Inventário" ) );
-        Inventario inv = manager.find( Inventario.class, idInventario );
-        System.out.println( inv );
+        Long idInventario = Long.valueOf(JOptionPane.showInputDialog("ID do Inventário"));
+        Inventario inv = manager.find(Inventario.class, idInventario);
+        System.out.println(inv);
     }
 
     private static void persistDados(EntityManager manager) {
         TipoDeBem tipo = new TipoDeBem();
-        tipo.setNome( "IMOVEIS" );
+        tipo.setNome("IMOVEIS");
 
         Departamento departamento = new Departamento();
-        departamento.setNome( "DIRETORIA REGIONAL" );
+        departamento.setNome("DIRETORIA REGIONAL");
 
         Inventario inventario = new Inventario();
-        inventario.setDepartamento( departamento )
-                .setInicio( LocalDate.now() );
+        inventario.setDepartamento(departamento)
+                .setInicio(LocalDate.now());
 
         Bem casa = new Bem();
-        casa.setAquisicao( LocalDate.now().minusYears( 10 ) )
-                .setEtiqueta( "123456" )
-                .setTipo( tipo )
-                .setLocalizacao( departamento )
-                .setNome( "Escritório da Vila Mariana - SP" );
+        casa.setAquisicao(LocalDate.now().minusYears(10))
+                .setEtiqueta("123456")
+                .setTipo(tipo)
+                .setLocalizacao(departamento)
+                .setNome("Escritório da Vila Mariana - SP");
 
         manager.getTransaction().begin();
 
-        manager.persist( casa );
-        manager.persist( inventario );
+        manager.persist(casa);
+        manager.persist(inventario);
 
         manager.getTransaction().commit();
 
-        System.out.println( casa );
-        System.out.println( inventario );
+        System.out.println(casa);
+        System.out.println(inventario);
     }
 }

@@ -3,19 +3,59 @@ package br.com.fiap.domain.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "TB_INVENTARIO")
-public class Inventario  {
+public class Inventario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_INVENTARIO")
-    @SequenceGenerator( name = "SQ_INVENTARIO", sequenceName = "SQ_INVENTARIO")
+    @SequenceGenerator(name = "SQ_INVENTARIO", sequenceName = "SQ_INVENTARIO")
     @Column(name = "ID_INVENTARIO")
     private Long id;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "TB_INVENTARIO_BEM",
+            joinColumns = {
+                    @JoinColumn(
+                            name = "INVENTARIO",
+                            referencedColumnName = "ID_INVENTARIO",
+                            foreignKey = @ForeignKey(name = "FK_INV_BEM")
+                    )
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(
+                            name = "ATIVO",
+                            referencedColumnName = "ID_BEM",
+                            foreignKey = @ForeignKey(name = "FK_BEM_INV")
+                    )
+            }
+    )
+    private Set<Bem> bens = new LinkedHashSet<>();
+
+    public Set<Bem> getBens() {
+        return Collections.unmodifiableSet(bens);
+    }
+
+
+    public Inventario addBem(Bem b) {
+        bens.add(b);
+        return this;
+    }
+
+
+    public Inventario removeBem(Bem b) {
+        bens.remove(b);
+        return this;
+    }
+
     @Column(name = "DT_INICIO", nullable = false)
-     private LocalDate inicio;
+    private LocalDate inicio;
 
     @Column(name = "DT_FIM")
     private LocalDate fim;

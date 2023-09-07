@@ -5,9 +5,9 @@
     <persistence-unit name="oracle" transaction-type="RESOURCE_LOCAL">
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
-            <property name="jakarta.persistence.jdbc.user" value="BENEZINHO"/>
-            <property name="jakarta.persistence.jdbc.password" value="root"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL"/>
+            <property name="jakarta.persistence.jdbc.user" value="RM97019"/>
+            <property name="jakarta.persistence.jdbc.password" value="040804"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>

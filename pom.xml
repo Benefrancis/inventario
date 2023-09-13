@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.com.fiap</groupId>
-    <artifactId>inventario</artifactId>
+    <artifactId>advocacia</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -13,6 +13,7 @@
         <maven.compiler.target>18</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
 
     <dependencies>
 
@@ -39,4 +40,5 @@
 
 
     </dependencies>
+
 </project>
